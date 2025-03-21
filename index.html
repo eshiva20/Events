@@ -9,6 +9,10 @@
       href="https://fonts.googleapis.com/css2?family=Alata&family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
     <title>Events and Exhibition</title>
 
     <style>
@@ -73,7 +77,6 @@
         }
       }
       .events-container {
-        height: 800px;
         padding-top: 80px;
 
         .banner-section {
@@ -178,6 +181,89 @@
           }
         }
       }
+      .footer {
+        background-color: #2d2c2a;
+        color: white;
+        padding-top: 80px;
+        padding-bottom: 64px;
+
+        .footer-container {
+          width: 95%;
+          margin: auto;
+          display: grid;
+          grid-template-columns: repeat(5, 1fr);
+          gap: 20px;
+
+          .footer-logo img {
+            height: 42px;
+            width: auto;
+          }
+
+          .footer-section {
+            h3 {
+              font-size: 22px;
+              margin-bottom: 20px;
+              text-transform: uppercase;
+              font-weight: bold;
+            }
+            ul {
+              list-style: none;
+              padding: 0;
+
+              li {
+                margin-bottom: 6px;
+                font-size: 15px;
+
+                a {
+                  color: white;
+                  text-decoration: none;
+                }
+              }
+            }
+          }
+
+          .directions {
+            font-size: 22px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+          }
+
+          .social-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            a {
+              font-size: 12px;
+              color: #ffffff4f;
+              text-decoration: none;
+              border: 1px solid #ffffff4f;
+              padding: 9px 10px;
+              border-radius: 50%;
+            }
+          }
+        }
+
+        .footer-bottom {
+          width: 95%;
+          margin: 10px auto 0px auto;
+          border-top: 2px solid #ffffff58;
+
+          p {
+            font-size: 14px;
+            padding-top: 28px;
+            font-weight: 300;
+            font-family: "IBM Plex Sans", sans-serif;
+
+            a {
+              color: white;
+              text-decoration: none;
+            }
+          }
+        }
+      }
     </style>
   </head>
 
@@ -225,6 +311,67 @@
         <div id="event-cards-container" class="event-cards-container"></div>
       </div>
     </section>
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-logo">
+          <img
+            src="https://healthbiotech.in/wp-content/uploads/2021/07/logo_rev.png"
+            alt="Health Biotech Limited"
+          />
+        </div>
+
+        <div class="footer-section">
+          <h3>About Us</h3>
+          <ul id="aboutUsLinks"></ul>
+          <h3>Policies</h3>
+          <ul id="policiesLinks"></ul>
+        </div>
+
+        <div class="footer-section">
+          <h3>Our Products</h3>
+          <ul id="productLinks"></ul>
+        </div>
+
+        <div class="footer-section">
+          <h3>Head Office</h3>
+          <ul>
+            <li>Health Biotech Limited</li>
+            <li>SCO 162-164 Sector 34 – A,</li>
+            <li>Chandigarh, 160022</li>
+          </ul>
+          <a
+            href="https://www.google.com/maps/place/Health+Biotech+Limited/@30.7223003,76.7710048,2424m/data=!3m1!1e3!4m6!3m5!1s0x390fedb315555555:0xf876ddbe444d1dbc!8m2!3d30.7222887!4d76.7709545!16s%2Fg%2F1td5dhsj?entry=ttu&g_ep=EgoyMDI1MDMxOC4wIKXMDSoASAFQAw%3D%3D"
+            class="directions"
+            >Get Directions</a
+          >
+        </div>
+
+        <div class="footer-section">
+          <h3>Get in Touch</h3>
+          <ul>
+            <li><a href="https://healthbiotech.in/careers">Careers</a></li>
+            <li>
+              <a href="https://healthbiotech.in/contact-us">Contact Us</a>
+            </li>
+            <li>
+              <a href="mailto:enquiry@healthbiotech.in"
+                >enquiry@healthbiotech.in</a
+              >
+            </li>
+            <li><a href="tel:01724685300">01724685300</a></li>
+            <li><a href="tel:+919876882973">+91 987 688 2973</a></li>
+          </ul>
+          <div class="social-links" id="socialLinks"></div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>
+          © Health Biotech Limited 2001-2021 | | Created by
+          <a href="https://thebrandpalette.com">TBP</a>
+        </p>
+      </div>
+    </footer>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const eventsData = {
@@ -248,6 +395,7 @@
               name: "Md Sir's Birthday",
               coverImage:
                 "https://healthbiotech.in/wp-content/uploads/2024/09/WhatsApp-Image-2024-09-11-at-5.06.42-PM1-scaled.jpeg",
+              // coverImage: "https://placehold.co/600x400",
               images: [
                 "https://placehold.co/600x400",
                 "https://placehold.co/600x400",
@@ -257,6 +405,7 @@
               name: "CPHI",
               coverImage:
                 "https://healthbiotech.in/wp-content/uploads/2025/01/1-8.jpeg",
+              // coverImage: "https://placehold.co/600x400",
               images: [
                 "https://placehold.co/600x400",
                 "https://placehold.co/600x400",
@@ -266,6 +415,7 @@
               name: "Arab Health",
               coverImage:
                 "https://healthbiotech.in/wp-content/uploads/2025/01/1-2-1.jpeg",
+              // coverImage: "https://placehold.co/600x400",
               images: [
                 "https://placehold.co/600x400",
                 "https://placehold.co/600x400",
@@ -275,6 +425,7 @@
               name: "Iphex",
               coverImage:
                 "https://healthbiotech.in/wp-content/uploads/2025/01/3-3.jpeg",
+              // coverImage: "https://placehold.co/600x400",
               images: [
                 "https://placehold.co/600x400",
                 "https://placehold.co/600x400",
@@ -332,6 +483,109 @@
         );
 
         renderEvents(yearSelect.value);
+
+        // _____________________Footer Script Below___________________________
+
+        const footerData = {
+          aboutUs: [
+            { name: "What We Do", href: "https://healthbiotech.in/what-we-do" },
+            {
+              name: "What We Believe",
+              href: "https://healthbiotech.in/what-we-believe",
+            },
+            {
+              name: "Our Team",
+              href: "https://healthbiotech.in/our-people-and-leadership",
+            },
+            { name: "Milestone", href: "https://healthbiotech.in/milestone" },
+            {
+              name: "Social Impact",
+              href: "https://healthbiotech.in/social-impact",
+            },
+            { name: "Our Blog", href: "https://healthbiotech.in/blog" },
+          ],
+          ourProducts: [
+            {
+              name: "Anti Biotic",
+              href: "https://healthbiotech.in/products-new",
+            },
+            {
+              name: "Anti Fungal",
+              href: "https://healthbiotech.in/products-new",
+            },
+            {
+              name: "Anti Viral",
+              href: "https://healthbiotech.in/products-new",
+            },
+            {
+              name: "Cardiovascular",
+              href: "https://healthbiotech.in/products-new",
+            },
+            {
+              name: "Gastrointestinal",
+              href: "https://healthbiotech.in/products-new",
+            },
+            {
+              name: "Gynaecology",
+              href: "https://healthbiotech.in/products-new",
+            },
+            { name: "Oncology", href: "https://healthbiotech.in/products-new" },
+          ],
+          policies: [
+            {
+              name: "Privacy Policy",
+              href: "https://healthbiotech.in/privacy",
+            },
+            {
+              name: "Terms of Use",
+              href: "https://healthbiotech.in/terms-of-service",
+            },
+          ],
+          socialLinks: [
+            {
+              icon: "fab fa-facebook-f",
+              href: "https://www.facebook.com/healthbiotech",
+              ariaLabel: "Follow on Facebook",
+            },
+            {
+              icon: "fab fa-linkedin-in",
+              href: "https://www.linkedin.com/company/health-biotech-limited",
+              ariaLabel: "Follow on Linkedln",
+            },
+            {
+              icon: "fab fa-twitter",
+              href: "https://x.com/healthbiotech",
+              ariaLabel: "Follow on Twitter",
+            },
+            {
+              icon: "fab fa-instagram",
+              href: "https://www.instagram.com/healthbiotech",
+              ariaLabel: "Follow on Instagram",
+            },
+          ],
+        };
+
+        function populateList(id, items) {
+          const list = document.getElementById(id);
+          list.innerHTML = items
+            .map((item) => `<li><a href="${item.href}">${item.name}</a></li>`)
+            .join("");
+        }
+
+        function populateSocialLinks() {
+          const container = document.getElementById("socialLinks");
+          container.innerHTML = footerData.socialLinks
+            .map(
+              (link) =>
+                `<a title="${link.ariaLabel}" href="${link.href}" class="${link.icon}"></a>`
+            )
+            .join("");
+        }
+
+        populateList("aboutUsLinks", footerData.aboutUs);
+        populateList("policiesLinks", footerData.policies);
+        populateList("productLinks", footerData.ourProducts);
+        populateSocialLinks();
       });
     </script>
   </body>
