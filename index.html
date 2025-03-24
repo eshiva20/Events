@@ -185,6 +185,60 @@
               }
             }
           }
+
+          .hidden {
+            display: none;
+          }
+
+          .event-details {
+            .event-header {
+              position: sticky;
+              top: 80px;
+              padding: 20px 0px;
+              background: #fff;
+
+              .back-btn {
+                background: #d12426;
+                color: white;
+                padding: 8px 24px;
+                border: none;
+                cursor: pointer;
+                font-size: 16px;
+                transition: all ease-in 300ms;
+                font-family: "Poppins", sans-serif;
+
+                &:hover {
+                  opacity: 0.8;
+                  border-radius: 4px;
+                }
+              }
+
+              .event-title {
+                text-align: center;
+                font-family: "Alata", sans-serif;
+                font-size: 30px;
+                text-transform: uppercase;
+                color: #d12426;
+                font-weight: 600;
+                letter-spacing: 1px;
+                margin-top: 4px;
+              }
+            }
+            .event-gallery {
+              margin-top: 32px;
+              display: grid;
+              grid-template-columns: repeat(4, 1fr);
+              gap: 20px;
+
+              .event-gallery-img {
+                height: 240px;
+                width: 100%;
+                object-fit: cover;
+                border-radius: 6px;
+                cursor: pointer;
+              }
+            }
+          }
         }
       }
       .footer {
@@ -270,9 +324,9 @@
           }
         }
       }
-
       @media screen and (max-width: 768px) {
         .nav {
+          position: relative;
           .nav-lists {
             display: none;
           }
@@ -336,6 +390,27 @@
                 }
               }
             }
+            .event-details {
+              .event-header {
+                position: sticky;
+                top: 0px;
+                .back-btn {
+                  margin-top: 15px;
+                }
+                .event-title {
+                  font-size: 24px;
+                  margin-top: 25px;
+                }
+              }
+              .event-gallery {
+                grid-template-columns: 1fr 1fr;
+                margin-top: 15px;
+                .event-gallery-img {
+                  height: 128px;
+                  width: 100%;
+                }
+              }
+            }
           }
         }
         .footer {
@@ -383,13 +458,12 @@
         <ul id="menu-items" class="menu-items"></ul>
       </div>
     </nav>
-
     <section class="events-container">
       <div class="banner-section">
         <h2 class="banner-title">Events and Exhibitions</h2>
       </div>
       <div class="events-section">
-        <div class="year-selector">
+        <div id="year-selector" class="year-selector">
           <label for="yearSelect">Year:</label>
           <select id="yearSelect">
             <option value="2022">2022</option>
@@ -401,6 +475,7 @@
         <div id="event-cards-container" class="event-cards-container"></div>
       </div>
     </section>
+
     <footer class="footer">
       <div class="footer-container">
         <div class="footer-logo">
@@ -471,13 +546,19 @@
               name: "Iphex",
               coverImage:
                 "https://healthbiotech.in/wp-content/uploads/2021/08/IMG_0284-bc.jpg",
-              images: [],
+              images: [
+                "https://healthbiotech.in/wp-content/uploads/2021/08/IMG_0284-v.jpg",
+                "https://healthbiotech.in/wp-content/uploads/2021/08/IMG_0284-bc.jpg",
+              ],
             },
             {
               name: "Christmas",
               coverImage:
                 "https://healthbiotech.in/wp-content/uploads/2021/11/nj.jpg",
-              images: [],
+              images: [
+                "https://healthbiotech.in/wp-content/uploads/2021/11/nj.jpg,",
+                "https://healthbiotech.in/wp-content/uploads/2021/11/nhy.jpg",
+              ],
             },
           ],
           2023: [],
@@ -488,8 +569,15 @@
                 "https://healthbiotech.in/wp-content/uploads/2024/09/WhatsApp-Image-2024-09-11-at-5.06.42-PM1-scaled.jpeg",
               // coverImage: "https://placehold.co/600x400",
               images: [
-                "https://placehold.co/600x400",
-                "https://placehold.co/600x400",
+                "https://healthbiotech.in/wp-content/uploads/2024/09/WhatsApp-Image-2024-09-11-at-5.06.57-PM1-scaled.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2024/09/WhatsApp-Image-2024-09-11-at-5.06.58-PM-scaled.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2024/09/WhatsApp-Image-2024-09-11-at-5.06.57-PM.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2024/09/WhatsApp-Image-2024-09-11-at-5.06.42-PM1-scaled.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2024/09/WhatsApp-Image-2024-09-11-at-5.06.41-PM1-scaled.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2024/09/WhatsApp-Image-2024-09-11-at-5.06.41-PM-scaled.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2024/09/WhatsApp-Image-2024-09-11-at-5.06.40-PM-scaled.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/7.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/8.jpeg",
               ],
             },
             {
@@ -498,8 +586,58 @@
                 "https://healthbiotech.in/wp-content/uploads/2025/01/1-8.jpeg",
               // coverImage: "https://placehold.co/600x400",
               images: [
-                "https://placehold.co/600x400",
-                "https://placehold.co/600x400",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/1-8.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/2-6.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/4-4.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/5-5.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/6-4.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/7-4.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/8-4.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/9-3.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/10-3.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/11-2.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/12-2.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/13-2.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/14-3.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/15-2.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/16-2.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/17-2.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/18-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/19-3.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/20-2.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/21-2.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/22-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/25-2.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/27-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/28-2.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/29-4.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/30-2-scaled.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/36-1-scaled.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/38-2-scaled.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/37-2-scaled.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/39-3-scaled.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/40-2-scaled.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/34-1-scaled.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/35-2-scaled.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/32-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/41-1-scaled.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/44-2-scaled.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/51-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/52-2.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/53-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/54-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/55-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/56-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/57-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/58-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/59.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/60.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/62.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/63.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/64.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/65.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/66.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/67.jpeg",
               ],
             },
             {
@@ -508,8 +646,15 @@
                 "https://healthbiotech.in/wp-content/uploads/2025/01/1-2-1.jpeg",
               // coverImage: "https://placehold.co/600x400",
               images: [
-                "https://placehold.co/600x400",
-                "https://placehold.co/600x400",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/1-2-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/2-2-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/3-2.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/5-3-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/6-2.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/7-2.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/8-2.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/9-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/10-1.jpeg",
               ],
             },
             {
@@ -518,8 +663,63 @@
                 "https://healthbiotech.in/wp-content/uploads/2025/01/3-3.jpeg",
               // coverImage: "https://placehold.co/600x400",
               images: [
-                "https://placehold.co/600x400",
-                "https://placehold.co/600x400",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/1-3-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/2-3-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/3-3.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/5-4-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/6-3.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/7-3.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/8-3.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/9-2.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/10-2.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/11-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/12-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/13-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/14-1-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/15-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/16-1-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/17.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/18.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/19-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/20-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/21-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/22.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/23-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/25.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/26-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/27.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/28-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/29-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/30.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/29-2.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/31.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/32.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/33.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/34.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/35.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/36.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/37.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/38.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/39-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/40.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/41.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/42.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/43.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/44.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/45-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/46.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/47.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/48.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/49.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/50.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/51.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/52.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/53.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/54.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/55.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/56.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/57.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/58.jpeg",
               ],
             },
           ],
@@ -528,19 +728,69 @@
               name: "Lohri",
               coverImage:
                 "https://healthbiotech.in/wp-content/uploads/2025/01/7-1-1.jpeg",
-              images: [],
+              images: [
+                "https://healthbiotech.in/wp-content/uploads/2025/01/2-1-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/3-1-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/3-1-2.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/4-1-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/5-1-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/6-1-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/7-1-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/8-1-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/10.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/11.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/12.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/13.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/14-2.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/15.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/01/16-1.jpeg",
+              ],
             },
             {
               name: "Arab Health",
               coverImage:
                 "https://healthbiotech.in/wp-content/uploads/2025/02/9.jpeg",
-              images: [],
+              images: [
+                "https://healthbiotech.in/wp-content/uploads/2025/02/1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/02/21.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/02/2.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/02/3.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/02/4.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/02/5.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/02/6.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/02/7.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/02/8.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/02/9.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/02/10.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/02/11.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/02/12.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/02/13.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/02/14.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/02/15.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/02/16.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/02/17.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/02/18.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/02/19.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/02/20.jpeg",
+              ],
             },
             {
               name: "Director Sir's Birthday",
               coverImage:
                 "https://healthbiotech.in/wp-content/uploads/2025/02/6-1.jpeg",
-              images: [],
+              images: [
+                "https://healthbiotech.in/wp-content/uploads/2025/02/1-2.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/02/3-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/02/4-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/02/6-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/02/7-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/02/8-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/02/9-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/02/10-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/02/11-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/02/12-1.jpeg",
+                "https://healthbiotech.in/wp-content/uploads/2025/02/13-1.jpeg",
+              ],
             },
           ],
         };
@@ -641,12 +891,21 @@
           .join("");
 
         const yearSelect = document.getElementById("yearSelect");
+        const yearSelector = document.getElementById("year-selector");
         const eventsCardsContainer = document.getElementById(
           "event-cards-container"
+        );
+        const eventDetailContainer = document.createElement("div");
+        eventDetailContainer.className = "event-details hidden";
+        eventsCardsContainer.insertAdjacentElement(
+          "afterend",
+          eventDetailContainer
         );
 
         function renderEvents(year) {
           eventsCardsContainer.innerHTML = "";
+          eventDetailContainer.classList.add("hidden");
+          eventsCardsContainer.classList.remove("hidden");
           const events = eventsData[year] || [];
           events.forEach((event) => {
             const eventCard = document.createElement("div");
@@ -656,12 +915,40 @@
 
             eventCard.appendChild(eventItem);
             eventItem.innerHTML = `
-                                    <img src="${event.coverImage}" alt="${event.name}" class="event-image"><h2 class="event-title">${event.name}</h2>`;
-            eventItem.addEventListener("click", () => showEventDetails(event));
+                                                      <img src="${event.coverImage}" alt="${event.name}" class="event-image"><h2 class="event-title">${event.name}</h2>`;
+            eventItem.addEventListener("click", () =>
+              showEventDetails(event, year)
+            );
             eventsCardsContainer.appendChild(eventCard);
           });
+        }
 
-          console.log("year", year);
+        function showEventDetails(event, year) {
+          eventsCardsContainer.classList.add("hidden");
+          eventDetailContainer.classList.remove("hidden");
+          yearSelector.classList.add("hidden");
+
+          eventDetailContainer.innerHTML = `
+                              <div class="event-header">
+                                <button class="back-btn">← Back to Events</button>
+                                <h2 class="event-title">- ${
+                                  event.name
+                                } ${year}-</h2>
+                              </div>
+
+                              <div class="event-gallery">
+                                ${event.images
+                                  .map(
+                                    (img) =>
+                                      `<img src="${img}" class="event-gallery-img" />`
+                                  )
+                                  .join("")}
+                              </div> `;
+          document.querySelector(".back-btn").addEventListener("click", () => {
+            eventDetailContainer.classList.add("hidden");
+            eventsCardsContainer.classList.remove("hidden");
+            yearSelector.classList.remove("hidden");
+          });
         }
 
         yearSelect.addEventListener("change", (e) =>
