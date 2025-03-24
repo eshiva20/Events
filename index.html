@@ -75,6 +75,12 @@
             color: #d43235;
           }
         }
+        .hamburger-icon {
+          display: none;
+        }
+        .menu {
+          display: none;
+        }
       }
       .events-container {
         padding-top: 80px;
@@ -264,6 +270,85 @@
           }
         }
       }
+
+      @media screen and (max-width: 768px) {
+        .nav {
+          .nav-lists {
+            display: none;
+          }
+          .hamburger-icon {
+            display: block;
+            font-size: 28px;
+            color: #d12426;
+          }
+          .menu {
+            display: none;
+            position: absolute;
+            top: 80px;
+            left: 50%;
+            transform: translate(-50%, 0%);
+            height: 600px;
+            background: #fff;
+            width: 84%;
+            border-top: 4px solid #2ea3f2;
+            transition: all;
+            transition-duration: 300ms;
+            transition-behavior: ease-in;
+
+            .menu-items {
+              list-style: none;
+              padding: 0px 5%;
+              .menu-item {
+                padding: 10px 40px;
+                border-bottom: 1px solid #00000008;
+                font-size: 14px;
+                font-weight: 600;
+                font-family: "Poppins", sans-serif;
+                a {
+                  text-decoration: none;
+                  color: #000000f7;
+                }
+              }
+            }
+          }
+        }
+        .events-container {
+          padding-bottom: 100px;
+          .banner-section {
+            height: 144px;
+            .banner-title {
+              width: calc(100% - 40px);
+              font-size: 24px;
+              padding: 20px;
+            }
+          }
+          .events-section {
+            width: calc(100% - 40px);
+            padding: 0px 20px;
+            .event-cards-container {
+              grid-template-columns: 1fr;
+              .event-card {
+                height: 384px;
+                .event-item {
+                  .event-image {
+                    height: 384px;
+                  }
+                }
+              }
+            }
+          }
+        }
+        .footer {
+          width: 100%;
+
+          .footer-container {
+            grid-template-columns: 1fr;
+          }
+          .footer-bottom {
+            margin: 30px auto 0px auto;
+          }
+        }
+      }
     </style>
   </head>
 
@@ -293,7 +378,12 @@
           <a href="https://healthbiotech.in/contact-us">Contact us</a>
         </li>
       </ul>
+      <i id="hamburger-icon" class="fa-solid fa-bars hamburger-icon"></i>
+      <div id="menu" class="menu">
+        <ul id="menu-items" class="menu-items"></ul>
+      </div>
     </nav>
+
     <section class="events-container">
       <div class="banner-section">
         <h2 class="banner-title">Events and Exhibitions</h2>
@@ -372,6 +462,7 @@
         </p>
       </div>
     </footer>
+
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const eventsData = {
@@ -453,6 +544,101 @@
             },
           ],
         };
+        const menuData = [
+          {
+            name: "Investor",
+            href: "https://healthbiotech.in/investor-relationship/",
+          },
+          {
+            name: "Expertise",
+            href: "https://healthbiotech.in/investor-relationship/",
+          },
+          {
+            name: "Careers",
+            href: "https://healthbiotech.in/careers/",
+          },
+          {
+            name: "Events and Exhibition",
+            href: "#",
+          },
+          {
+            name: "Contact us",
+            href: "https://healthbiotech.in/contact-us/",
+          },
+          {
+            name: "About us",
+            subItems: [
+              {
+                name: "What we believe",
+                href: "https://healthbiotech.in/what-we-believe/",
+              },
+              {
+                name: "What we do",
+                href: "https://healthbiotech.in/what-we-do/",
+              },
+              {
+                name: "Milestone",
+                href: "https://healthbiotech.in/milestone/",
+              },
+              {
+                name: "Our people",
+                href: "https://healthbiotech.in/our-people-and-leadership/",
+              },
+              {
+                name: "CSR",
+                href: "https://healthbiotech.in/csr/",
+              },
+            ],
+          },
+          {
+            name: "Products",
+            href: "https://healthbiotech.in/products/",
+          },
+          {
+            name: "Business Segments",
+            href: "https://healthbiotech.in/business-segments/",
+          },
+          {
+            name: "Global Presence",
+            href: "https://healthbiotech.in/global-presense/",
+          },
+          {
+            name: "Media",
+            href: "https://healthbiotech.in/media/",
+          },
+          {
+            name: "Blog",
+            href: "https://healthbiotech.in/blog/",
+          },
+          {
+            name: "login",
+            href: "https://healthbiotech.in/login/",
+          },
+          {
+            name: "Logout",
+            href: "https://healthbiotech.in/logout/",
+          },
+        ];
+
+        const hamburgerIcon = document.getElementById("hamburger-icon");
+        const menuDiv = document.getElementById("menu");
+
+        let menuHidden = true;
+        menuDiv.style.display = "none";
+
+        hamburgerIcon.addEventListener("click", () => {
+          menuHidden = !menuHidden;
+
+          menuDiv.style.display = menuHidden ? "none" : "block";
+        });
+
+        const menuItems = document.getElementById("menu-items");
+        menuItems.innerHTML = menuData
+          .map(
+            (item) =>
+              `<li class="menu-item"><a href="${item.href}">${item?.name}</a></li>`
+          )
+          .join("");
 
         const yearSelect = document.getElementById("yearSelect");
         const eventsCardsContainer = document.getElementById(
