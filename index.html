@@ -468,8 +468,8 @@
           <select id="yearSelect">
             <option value="2022">2022</option>
             <option value="2023">2023</option>
-            <option value="2024" selected>2024</option>
-            <option value="2025">2025</option>
+            <option value="2024">2024</option>
+            <option value="2025" selected>2025</option>
           </select>
         </div>
         <div id="event-cards-container" class="event-cards-container"></div>
@@ -927,7 +927,7 @@
           eventsCardsContainer.classList.add("hidden");
           eventDetailContainer.classList.remove("hidden");
           yearSelector.classList.add("hidden");
-
+          window.scrollTo(0, 235);
           eventDetailContainer.innerHTML = `
                               <div class="event-header">
                                 <button class="back-btn">← Back to Events</button>
@@ -945,6 +945,7 @@
                                   .join("")}
                               </div> `;
           document.querySelector(".back-btn").addEventListener("click", () => {
+            window.scrollTo(0, 0);
             eventDetailContainer.classList.add("hidden");
             eventsCardsContainer.classList.remove("hidden");
             yearSelector.classList.remove("hidden");
