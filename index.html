@@ -22,6 +22,7 @@
         margin: 0px;
         padding: 0px;
       }
+
       h1,
       h2,
       h3,
@@ -50,6 +51,7 @@
           height: 72px;
           width: auto;
         }
+
         .nav-lists {
           list-style: none;
           display: flex;
@@ -71,17 +73,21 @@
               }
             }
           }
+
           .list:nth-child(4) a {
             color: #d43235;
           }
         }
+
         .hamburger-icon {
           display: none;
         }
+
         .menu {
           display: none;
         }
       }
+
       .events-container {
         padding-top: 80px;
 
@@ -106,6 +112,7 @@
             font-family: "Alata", sans-serif;
           }
         }
+
         .events-section {
           padding: 0px 32px 150px 32px;
 
@@ -163,6 +170,7 @@
                   transition: transform 0.5s ease-in-out;
                   transform-origin: center center;
                 }
+
                 .event-title {
                   position: absolute;
                   width: 100%;
@@ -224,6 +232,7 @@
                 margin-top: 4px;
               }
             }
+
             .event-gallery {
               margin-top: 32px;
               display: grid;
@@ -241,6 +250,7 @@
           }
         }
       }
+
       .footer {
         background-color: #2d2c2a;
         color: white;
@@ -266,6 +276,7 @@
               text-transform: uppercase;
               font-weight: bold;
             }
+
             ul {
               list-style: none;
               padding: 0;
@@ -295,6 +306,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
+
             a {
               font-size: 12px;
               color: #ffffff4f;
@@ -324,17 +336,21 @@
           }
         }
       }
+
       @media screen and (max-width: 768px) {
         .nav {
           position: relative;
+
           .nav-lists {
             display: none;
           }
+
           .hamburger-icon {
             display: block;
             font-size: 28px;
             color: #d12426;
           }
+
           .menu {
             display: none;
             position: absolute;
@@ -352,37 +368,75 @@
             .menu-items {
               list-style: none;
               padding: 0px 5%;
+
               .menu-item {
                 padding: 10px 40px;
                 border-bottom: 1px solid #00000008;
                 font-size: 14px;
                 font-weight: 600;
                 font-family: "Poppins", sans-serif;
+
                 a {
+                  width: 100%;
+                  display: block;
                   text-decoration: none;
                   color: #000000f7;
                 }
               }
+
+              .menu-btn {
+                padding: 10px 40px;
+                border-bottom: 1px solid #00000008 !important;
+                font-size: 14px;
+                font-weight: 600;
+                font-family: "Poppins", sans-serif;
+                border: none;
+                background: none;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+
+                .arrow-down {
+                  color: #d12426;
+                  transition: transform 0.3s ease;
+                }
+
+                .rotate {
+                  transform: rotate(180deg);
+                }
+              }
+              .subMenu-items {
+                list-style: none;
+                margin-left: -20px;
+              }
             }
           }
         }
+
         .events-container {
           padding-bottom: 100px;
+
           .banner-section {
             height: 144px;
+
             .banner-title {
               width: calc(100% - 40px);
               font-size: 24px;
               padding: 20px;
             }
           }
+
           .events-section {
             width: calc(100% - 40px);
             padding: 0px 20px;
+
             .event-cards-container {
               grid-template-columns: 1fr;
+
               .event-card {
                 height: 384px;
+
                 .event-item {
                   .event-image {
                     height: 384px;
@@ -390,21 +444,26 @@
                 }
               }
             }
+
             .event-details {
               .event-header {
                 position: sticky;
                 top: 0px;
+
                 .back-btn {
                   margin-top: 15px;
                 }
+
                 .event-title {
                   font-size: 24px;
                   margin-top: 25px;
                 }
               }
+
               .event-gallery {
                 grid-template-columns: 1fr 1fr;
                 margin-top: 15px;
+
                 .event-gallery-img {
                   height: 128px;
                   width: 100%;
@@ -413,12 +472,14 @@
             }
           }
         }
+
         .footer {
           width: 100%;
 
           .footer-container {
             grid-template-columns: 1fr;
           }
+
           .footer-bottom {
             margin: 30px auto 0px auto;
           }
@@ -809,7 +870,7 @@
           },
           {
             name: "Events and Exhibition",
-            href: "#",
+            href: "https://healthbiotech.in/events/",
           },
           {
             name: "Contact us",
@@ -884,11 +945,34 @@
 
         const menuItems = document.getElementById("menu-items");
         menuItems.innerHTML = menuData
-          .map(
-            (item) =>
-              `<li class="menu-item"><a href="${item.href}">${item?.name}</a></li>`
+          .map((item, id) =>
+            id === 5
+              ? `<button id="menu-button" class="menu-btn" key=${id}>${
+                  item?.name
+                }<i id="arrow-icon" class="fa-solid arrow-down fa-chevron-down"></i></button> <ul id="subMenu-items" class="subMenu-items">${item?.subItems
+                  ?.map(
+                    (subItem, subId) => `<li key=${subId} class="menu-item">
+                  <a href="${subItem.href}">${subItem?.name}</a>
+                </li>`
+                  )
+                  .join("")}</ul>`
+              : `<li key=${id} class="menu-item">
+                  <a href="${item.href}">${item?.name}</a>
+                </li> `
           )
           .join("");
+
+        const subMenu = document.getElementById("subMenu-items");
+        const menuButton = document.getElementById("menu-button");
+        const arrowIcon = document.getElementById("arrow-icon");
+
+        if (subMenu) subMenu.style.display = "none";
+
+        menuButton?.addEventListener("click", () => {
+          const isHidden = subMenu.style.display === "none";
+          subMenu.style.display = isHidden ? "block" : "none";
+          arrowIcon.classList.toggle("rotate");
+        });
 
         const yearSelect = document.getElementById("yearSelect");
         const yearSelector = document.getElementById("year-selector");
