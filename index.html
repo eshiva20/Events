@@ -337,6 +337,72 @@
         }
       }
 
+      .lightbox {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+      }
+
+      .lightbox-content {
+        position: relative;
+        height: 100%;
+        width: auto;
+      }
+
+      .lightbox-img {
+        height: 100%;
+        width: auto;
+      }
+
+      .close-lightbox {
+        position: absolute;
+        top: 0px;
+        right: 10px;
+        font-size: 24px;
+        color: white;
+        cursor: pointer;
+      }
+
+      .image-counter {
+        position: absolute;
+        top: 7px;
+        left: 12px;
+        font-size: 14px;
+        color: #fff;
+      }
+
+      .nav-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #0000004d;
+        border: none;
+        color: white;
+        font-size: 24px;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+
+      #prev-btn {
+        left: 10px;
+      }
+
+      #next-btn {
+        right: 10px;
+      }
+
+      .hidden {
+        display: none;
+      }
+
       @media screen and (max-width: 768px) {
         .nav {
           position: relative;
@@ -483,6 +549,17 @@
           .footer-bottom {
             margin: 30px auto 0px auto;
           }
+        }
+
+        .lightbox-content {
+          position: relative;
+          height: auto;
+          width: auto;
+        }
+
+        .lightbox-img {
+          width: 100%;
+          height: auto;
         }
       }
     </style>
@@ -1007,27 +1084,125 @@
           });
         }
 
+        // function showEventDetails(event, year) {
+        //   eventsCardsContainer.classList.add("hidden");
+        //   eventDetailContainer.classList.remove("hidden");
+        //   yearSelector.classList.add("hidden");
+        //   window.scrollTo(0, 235);
+        //   eventDetailContainer.innerHTML = `
+        //                       <div class="event-header">
+        //                         <button class="back-btn">← Back to Events</button>
+        //                         <h2 class="event-title">- ${
+        //                           event.name
+        //                         } ${year}-</h2>
+        //                       </div>
+
+        //                       <div class="event-gallery">
+        //                         ${event.images
+        //                           .map(
+        //                             (img) =>
+        //                               `<img src="${img}" class="event-gallery-img" />`
+        //                           )
+        //                           .join("")}
+        //                       </div> `;
+        //   document.querySelector(".back-btn").addEventListener("click", () => {
+        //     window.scrollTo(0, 0);
+        //     eventDetailContainer.classList.add("hidden");
+        //     eventsCardsContainer.classList.remove("hidden");
+        //     yearSelector.classList.remove("hidden");
+        //   });
+        // }
+
+        // -----------------------------------------------------------------------------------------------------
+
         function showEventDetails(event, year) {
           eventsCardsContainer.classList.add("hidden");
           eventDetailContainer.classList.remove("hidden");
           yearSelector.classList.add("hidden");
           window.scrollTo(0, 235);
-          eventDetailContainer.innerHTML = `
-                              <div class="event-header">
-                                <button class="back-btn">← Back to Events</button>
-                                <h2 class="event-title">- ${
-                                  event.name
-                                } ${year}-</h2>
-                              </div>
 
-                              <div class="event-gallery">
-                                ${event.images
-                                  .map(
-                                    (img) =>
-                                      `<img src="${img}" class="event-gallery-img" />`
-                                  )
-                                  .join("")}
-                              </div> `;
+          eventDetailContainer.innerHTML = `
+    <div class="event-header">
+      <button class="back-btn">← Back to Events</button>
+      <h2 class="event-title">- ${event.name} ${year}-</h2>
+    </div>
+
+    <div class="event-gallery">
+      ${event.images
+        .map(
+          (img, index) =>
+            `<img src="${img}" class="event-gallery-img" data-index="${index}" />`
+        )
+        .join("")}
+    </div>
+
+    <div id="lightbox" class="lightbox hidden">
+      <div class="lightbox-header">
+        <span class="close-lightbox">&times;</span>
+        <span id="image-counter" class="image-counter"></span>
+      </div>
+      <div class="lightbox-content">
+        <button id="prev-btn" class="nav-btn">&#10094;</button>
+        <img id="lightbox-img" class="lightbox-img" src="" />
+        <button id="next-btn" class="nav-btn">&#10095;</button>
+      </div>
+    </div>
+  `;
+
+          let currentIndex = 0;
+          const images = event.images;
+          const lightbox = document.getElementById("lightbox");
+          const lightboxImg = document.getElementById("lightbox-img");
+          const prevBtn = document.getElementById("prev-btn");
+          const nextBtn = document.getElementById("next-btn");
+          const imageCounter = document.getElementById("image-counter");
+
+          function updateCounter() {
+            imageCounter.textContent = `${currentIndex + 1}/${images.length}`;
+          }
+
+          function disableScroll() {
+            document.body.style.overflow = "hidden"; // Disable scrolling
+          }
+
+          function enableScroll() {
+            document.body.style.overflow = ""; // Re-enable scrolling
+          }
+
+          // Handle image click to open lightbox
+          document.querySelectorAll(".event-gallery-img").forEach((img) => {
+            img.addEventListener("click", (e) => {
+              currentIndex = Number(e.target.dataset.index);
+              lightboxImg.src = images[currentIndex];
+              lightbox.classList.remove("hidden");
+              disableScroll();
+              updateCounter();
+            });
+          });
+
+          // Handle closing the lightbox
+          document
+            .querySelector(".close-lightbox")
+            .addEventListener("click", () => {
+              lightbox.classList.add("hidden");
+              enableScroll();
+            });
+
+          // Handle Next button
+          nextBtn.addEventListener("click", () => {
+            currentIndex = (currentIndex + 1) % images.length;
+            lightboxImg.src = images[currentIndex];
+            updateCounter();
+          });
+
+          // Handle Previous button
+          prevBtn.addEventListener("click", () => {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            lightboxImg.src = images[currentIndex];
+            updateCounter();
+          });
+
+          // Handle back button click
           document.querySelector(".back-btn").addEventListener("click", () => {
             window.scrollTo(0, 0);
             eventDetailContainer.classList.add("hidden");
@@ -1036,6 +1211,7 @@
           });
         }
 
+        // ---------------------------------------------------------------------------------
         yearSelect.addEventListener("change", (e) =>
           renderEvents(e.target.value)
         );
